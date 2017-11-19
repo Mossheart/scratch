@@ -42,11 +42,8 @@ public class Initial
     public static void initTestSuite() throws IOException
     {
         System.setProperty("webdriver.chrome.driver", "c:\\tools\\chromedriver.exe");
-        System.out.println(PropertyLoader.loadProperty("grid.url"));
         gridHubUrl = null;
-
         capabilities = PropertyLoader.loadCapabilities();
-        //WebDriverFactory.setMode(WebDriverFactoryMode.THREADLOCAL_SINGLETON);
         driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
 
         baseUrl = PropertyLoader.loadProperty("site.url");
