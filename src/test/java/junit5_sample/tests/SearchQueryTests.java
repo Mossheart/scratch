@@ -3,6 +3,7 @@ package junit5_sample.tests;
 import junit5_sample.services.HomePage;
 import junit5_sample.services.SearchForm;
 import junit5_sample.services.SerpPage;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -28,6 +29,7 @@ public class SearchQueryTests extends Initial
     }
 
     @Test
+    @Disabled
     public void simpleCheck_Failure()
     {
         String queryValue = "samsung";
@@ -40,6 +42,7 @@ public class SearchQueryTests extends Initial
     }
 
     @Test
+    @Disabled
     public void usingMatcher_Success()
     {
         String queryValue = "samsung";
@@ -54,6 +57,7 @@ public class SearchQueryTests extends Initial
     }
 
     @Test
+    @Disabled
     public void usingMatcher_Failure()
     {
         String queryValue = "samsung";

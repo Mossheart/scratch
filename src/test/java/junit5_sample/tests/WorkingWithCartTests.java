@@ -41,6 +41,7 @@ public class WorkingWithCartTests extends Initial
     }
 
     @Test
+    @Disabled
     public void checkSubtotalForTwoSamplesOfOneItem()
     {
         String queryValue = "quadcopter";
@@ -59,6 +60,7 @@ public class WorkingWithCartTests extends Initial
     }
 
     @Test
+    @Disabled
     public void checkSubtotalWithTwoItems()
     {
         String queryValue = "quadcopter";
@@ -75,6 +77,7 @@ public class WorkingWithCartTests extends Initial
     }
 
     @Test
+    @Disabled
     public void deletingOneOfTwoItems()
     {
         String queryValue = "quadcopter";
@@ -96,6 +99,7 @@ public class WorkingWithCartTests extends Initial
     }
 
     @Test
+    @Disabled
     public void changingQuantityFromTwoToOne()
     {
         String queryValue = "quadcopter";
@@ -117,6 +121,7 @@ public class WorkingWithCartTests extends Initial
     }
 
     @Test
+    @Disabled
     public void settingQuantityToZero()
     {
         String queryValue = "quadcopter";
@@ -135,6 +140,7 @@ public class WorkingWithCartTests extends Initial
     }
 
     @Test
+    @Disabled
     public void addingAndDeletingTwoItems()
     {
         String queryValue = "quadcopter";

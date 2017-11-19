@@ -2,6 +2,7 @@ package junit5_sample.tests;
 
 import junit5_sample.services.*;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoggedInTests extends Initial
 {
     @Test
+    @Disabled
     public void future()
     {
         HomePage.gotoHomePage();
