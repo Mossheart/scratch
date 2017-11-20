@@ -1,24 +1,21 @@
 package junit5_sample.services;
 
+import junit5_sample.Base;
 import org.openqa.selenium.WebElement;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static junit5_sample.models.SerpElements.*;
-
-public class SerpPage
+@Service
+public class SerpPage extends Base
 {
-    public static boolean checkSnippetsForQueryMatches(String queryValue) {
-        /**
-         * check every snippet's title for containing the query
-         * if we find snippet without query we return false
-         */
-        for ( WebElement snippet: allSnippets) {
+    public boolean checkSnippetsForQueryMatches(String queryValue)
+    {
+        for (WebElement snippet : serpPageElements.allSnippets) {
             if ((snippet.getAttribute("title")).toLowerCase().contains(queryValue)) {
                 continue;
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -26,10 +23,11 @@ public class SerpPage
         return true;
     }
 
-    public static List<String> savingSnippetsLinks() {
+    public List<String> savingSnippetsLinks()
+    {
         List<String> snippetLinks = new ArrayList<String>();
 
-        for (WebElement snippet: allSnippets) {
+        for (WebElement snippet : serpPageElements.allSnippets) {
             snippetLinks.add(snippet.getAttribute("href"));
         }
 
@@ -38,29 +36,26 @@ public class SerpPage
 
     /**
      * add specified amount of different items to cart
+     *
      * @param number
      * @return
      */
-    public static boolean addItemsToCart(int number) {
-        /**
-         * list of links we've got on search results page
-         */
+    public void addItemsToCart(int number)
+    {
         List<String> snippetLinks = savingSnippetsLinks();
-        /**
-         * variable for controlling number of added items
-         */
+
         int counter = 1;
-        /**
-         * adding items from list until we get enough different items in the cart
-         */
+
         for (String snippet : snippetLinks) {
             driver.get(snippet);
             try {
-            } catch (Exception e) {continue;}
-            if (counter < number) counter++;
-            else break;
+            } catch (Exception e) {
+                continue;
+            }
+            if (counter < number)
+                counter++;
+            else
+                break;
         }
-
-        return true;
     }
 }

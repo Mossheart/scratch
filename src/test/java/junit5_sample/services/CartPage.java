@@ -1,12 +1,13 @@
 package junit5_sample.services;
 
+import junit5_sample.Base;
 import org.openqa.selenium.WebElement;
+import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 
-import static junit5_sample.models.CartElements.*;
-
-public class CartPage
+@Service
+public class CartPage extends Base
 {
     /**
      * function gets "US $**,**" and extracts number
@@ -14,7 +15,7 @@ public class CartPage
      * @param priceString
      * @return
      */
-    public static double parseEbayPriceToDouble(String priceString)
+    public double parseEbayPriceToDouble(String priceString)
     {
         priceString = priceString.substring(priceString.indexOf("$") + 1);
 
@@ -23,31 +24,27 @@ public class CartPage
         return Double.parseDouble(priceString);
     }
 
-    public static double getTotalPriceOfGoodsInCart()
+    public double getTotalPriceOfGoodsInCart()
     {
-        return parseEbayPriceToDouble(totalPrice.getText());
+        return parseEbayPriceToDouble(cartPageElements.totalPrice.getText());
     }
 
-    public static void saveForLater()
+    public void saveForLater()
     {
-        saveForLater.click();
-    }
-    public static void returnFromLater()
-    {
-        returnFromLater.click();
+        cartPageElements.saveForLater.click();
     }
 
-    public static boolean compareTotalToSumOfParticularPrices()
+    public void returnFromLater()
     {
-        /**
-         * get subtotal price
-         */
-        double total = parseEbayPriceToDouble(subtotalPrice.getText());
-        /**
-         * get sum of subtotal item prices
-         */
+        cartPageElements.returnFromLater.click();
+    }
+
+    public boolean compareTotalToSumOfParticularPrices()
+    {
+        double total = parseEbayPriceToDouble(cartPageElements.subtotalPrice.getText());
+
         double sum = 0.0;
-        for (WebElement subprice : subtotalItemPrices) {
+        for (WebElement subprice : cartPageElements.subtotalItemPrices) {
             double sub;
             try {
                 sub = parseEbayPriceToDouble(subprice.getText());
@@ -56,18 +53,15 @@ public class CartPage
             }
             sum += sub;
         }
-        /**
-         * formatting sum to right format to prevent calculations with double problems
-         */
+
         DecimalFormat df = new DecimalFormat("#.##");
         String strsum = df.format(sum);
         strsum = strsum.replace(",", ".");
         sum = Double.parseDouble(strsum);
-        /**
-         * check that calculated by us and ebay sums are equal
-         */
+
         boolean checker = false;
-        if (total == sum) checker = true;
+        if (total == sum)
+            checker = true;
         return checker;
     }
 
@@ -77,18 +71,20 @@ public class CartPage
      * @param quantity
      * @return
      */
-    public static boolean changeQuantityAndRefresh(int quantity)
+    public boolean changeQuantityAndRefresh(int quantity)
     {
-        double oneItemPrice = parseEbayPriceToDouble(subtotalPrice.getText());
+        double oneItemPrice = parseEbayPriceToDouble(cartPageElements.subtotalPrice.getText());
 
-        itemQuantity.clear();
-        itemQuantity.sendKeys(Integer.toString(quantity));
-        refreshQuantity.click();
+        cartPageElements.itemQuantity.clear();
+        cartPageElements.itemQuantity.sendKeys(Integer.toString(quantity));
+        cartPageElements.refreshQuantity.click();
 
-        if (quantity == 0) ;
-        else if (parseEbayPriceToDouble(subtotalPrice.getText()) == oneItemPrice * quantity)
+        if (quantity == 0)
+            ;
+        else if (parseEbayPriceToDouble(cartPageElements.subtotalPrice.getText()) == oneItemPrice * quantity)
             return true;
-        else return false;
+        else
+            return false;
         return false;
     }
 }

@@ -1,9 +1,6 @@
 package junit5_sample.tests;
 
-import junit5_sample.services.CartPage;
-import junit5_sample.services.HomePage;
-import junit5_sample.services.SearchForm;
-import junit5_sample.services.SerpPage;
+import junit5_sample.Base;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -13,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Created by Dmitriev on 06.04.2016.
  */
-public class WorkingWithCartTests extends Initial
+public class WorkingWithCartTests extends Base
 {
     @Test
     public void checkEmptyCart()
     {
-        HomePage.gotoCartPage();
+        homePage.gotoCartPage();
 
-        assertEquals(CartPage.getTotalPriceOfGoodsInCart(), 0.00);
+        assertEquals(cartPage.getTotalPriceOfGoodsInCart(), 0.00);
     }
 
     @Test
@@ -31,13 +28,13 @@ public class WorkingWithCartTests extends Initial
 
         int itemsNumber = 1;
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
-        assertTrue(SerpPage.addItemsToCart(itemsNumber));
+        serpPage.addItemsToCart(itemsNumber);
 
-        assertTrue(CartPage.compareTotalToSumOfParticularPrices());
+        assertTrue(cartPage.compareTotalToSumOfParticularPrices());
     }
 
     @Test
@@ -48,15 +45,15 @@ public class WorkingWithCartTests extends Initial
 
         int quantity = 2;
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
-        assertTrue(SerpPage.addItemsToCart(1));
+        serpPage.addItemsToCart(1);
 
-        assertTrue(CartPage.changeQuantityAndRefresh(quantity));
+        assertTrue(cartPage.changeQuantityAndRefresh(quantity));
 
-        assertTrue(CartPage.compareTotalToSumOfParticularPrices());
+        assertTrue(cartPage.compareTotalToSumOfParticularPrices());
     }
 
     @Test
@@ -67,13 +64,13 @@ public class WorkingWithCartTests extends Initial
 
         int itemsNumber = 2;
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
-        assertTrue(SerpPage.addItemsToCart(itemsNumber));
+        serpPage.addItemsToCart(itemsNumber);
 
-        assertTrue(CartPage.compareTotalToSumOfParticularPrices());
+        assertTrue(cartPage.compareTotalToSumOfParticularPrices());
     }
 
     @Test
@@ -85,17 +82,17 @@ public class WorkingWithCartTests extends Initial
         int itemsNumber = 2;
         int quantity = 0;
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
-        assertTrue(SerpPage.addItemsToCart(itemsNumber));
+        serpPage.addItemsToCart(itemsNumber);
 
-        assertTrue(CartPage.compareTotalToSumOfParticularPrices());
+        assertTrue(cartPage.compareTotalToSumOfParticularPrices());
 
-        assertTrue(CartPage.changeQuantityAndRefresh(quantity));
+        assertTrue(cartPage.changeQuantityAndRefresh(quantity));
 
-        assertTrue(CartPage.compareTotalToSumOfParticularPrices());
+        assertTrue(cartPage.compareTotalToSumOfParticularPrices());
     }
 
     @Test
@@ -107,17 +104,17 @@ public class WorkingWithCartTests extends Initial
         int quantity1 = 2;
         int quantity2 = 1;
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
-        assertTrue(SerpPage.addItemsToCart(1));
+        serpPage.addItemsToCart(1);
 
-        assertTrue(CartPage.changeQuantityAndRefresh(quantity1));
+        assertTrue(cartPage.changeQuantityAndRefresh(quantity1));
 
-        assertTrue(CartPage.changeQuantityAndRefresh(quantity2));
+        assertTrue(cartPage.changeQuantityAndRefresh(quantity2));
 
-        assertTrue(CartPage.compareTotalToSumOfParticularPrices());
+        assertTrue(cartPage.compareTotalToSumOfParticularPrices());
     }
 
     @Test
@@ -128,15 +125,15 @@ public class WorkingWithCartTests extends Initial
 
         int quantity = 0;
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
-        assertTrue(SerpPage.addItemsToCart(1));
+        serpPage.addItemsToCart(1);
 
-        assertTrue(CartPage.changeQuantityAndRefresh(quantity));
+        assertTrue(cartPage.changeQuantityAndRefresh(quantity));
 
-        assertEquals(CartPage.getTotalPriceOfGoodsInCart(), 0.00);
+        assertEquals(cartPage.getTotalPriceOfGoodsInCart(), 0.00);
     }
 
     @Test
@@ -147,16 +144,16 @@ public class WorkingWithCartTests extends Initial
 
         int itemsNumber = 2;
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
-        assertTrue(SerpPage.addItemsToCart(itemsNumber));
+        serpPage.addItemsToCart(itemsNumber);
 
-        assertTrue(CartPage.changeQuantityAndRefresh(0));
+        assertTrue(cartPage.changeQuantityAndRefresh(0));
 
-        assertTrue(CartPage.changeQuantityAndRefresh(0));
+        assertTrue(cartPage.changeQuantityAndRefresh(0));
 
-        assertEquals(CartPage.getTotalPriceOfGoodsInCart(), 0.00);
+        assertEquals(cartPage.getTotalPriceOfGoodsInCart(), 0.00);
     }
 }

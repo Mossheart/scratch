@@ -1,22 +1,18 @@
 package junit5_sample.services;
 
-import static junit5_sample.models.SearchFormElements.*;
+import junit5_sample.Base;
+import org.openqa.selenium.By;
+import org.springframework.stereotype.Service;
 
-public class SearchForm
+@Service
+public class SearchForm extends Base
 {
-    public static void enterQueryAndClickSearch(String queryValue)
+    public void enterQueryAndClickSearch(String queryValue)
     {
-        /**
-         * clear the search form
-         */
-        searchForm.clear();
-        /**
-         * typing query
-         */
-        searchForm.sendKeys(queryValue);
-        /**
-         * search button clicking
-         */
-        performSearch.click();
+        driver.findElement(By.xpath(searchFormElements.SEARCH_FORM)).clear();
+
+        driver.findElement(By.xpath(searchFormElements.SEARCH_FORM)).sendKeys(queryValue);
+
+        driver.findElement(By.xpath(searchFormElements.PERFORM_SEARCH)).click();
     }
 }

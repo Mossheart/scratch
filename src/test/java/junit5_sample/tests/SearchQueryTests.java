@@ -1,8 +1,6 @@
 package junit5_sample.tests;
 
-import junit5_sample.services.HomePage;
-import junit5_sample.services.SearchForm;
-import junit5_sample.services.SerpPage;
+import junit5_sample.Base;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -14,18 +12,18 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SearchQueryTests extends Initial
+public class SearchQueryTests extends Base
 {
     @Test
     public void simpleCheck_Success()
     {
         String queryValue = "iphone";
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
-        assertTrue(SerpPage.checkSnippetsForQueryMatches(queryValue));
+        assertTrue(serpPage.checkSnippetsForQueryMatches(queryValue));
     }
 
     @Test
@@ -34,11 +32,11 @@ public class SearchQueryTests extends Initial
     {
         String queryValue = "samsung";
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
-        assertTrue(SerpPage.checkSnippetsForQueryMatches("iphone"));
+        assertTrue(serpPage.checkSnippetsForQueryMatches("iphone"));
     }
 
     @Test
@@ -47,9 +45,9 @@ public class SearchQueryTests extends Initial
     {
         String queryValue = "samsung";
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
         List<WebElement> allSnippets = driver.findElements(By.xpath(".//*[@class='lvtitle']/a"));
         for (WebElement snippet : allSnippets)
@@ -62,9 +60,9 @@ public class SearchQueryTests extends Initial
     {
         String queryValue = "samsung";
 
-        HomePage.gotoHomePage();
+        homePage.gotoHomePage();
 
-        SearchForm.enterQueryAndClickSearch(queryValue);
+        searchForm.enterQueryAndClickSearch(queryValue);
 
         List<WebElement> allSnippets = driver.findElements(By.xpath(".//*[@class='lvtitle']/a"));
         for (WebElement snippet : allSnippets)

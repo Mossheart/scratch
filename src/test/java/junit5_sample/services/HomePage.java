@@ -1,28 +1,28 @@
 package junit5_sample.services;
 
-import static junit5_sample.models.HomeElements.*;
-import static junit5_sample.tests.Initial.baseUrl;
-import static junit5_sample.tests.Initial.cartUrl;
+import junit5_sample.Base;
+import org.springframework.stereotype.Service;
 
-public class HomePage
+@Service
+public class HomePage extends Base
 {
-    public static void gotoHomePage()
+    public void gotoHomePage()
     {
         driver.get(baseUrl);
     }
 
-    public static void gotoCartPage()
+    public void gotoCartPage()
     {
         driver.get(cartUrl);
     }
 
-    public static void clickSigningMenu()
+    public void clickSigningMenu()
     {
-        signingMenu.click();
+        homePageElements.signingMenu.click();
     }
 
-    public static void clickSignOut()
+    public void clickSignOut()
     {
-        signOut.click();
+        homePageElements.signOut.click();
     }
 }
