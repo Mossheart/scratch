@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -16,6 +18,7 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.web.ServletTestExecutionListener;
 import ru.stqa.selenium.factory.WebDriverPool;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +45,7 @@ public class Initial
     {
         System.setProperty("webdriver.chrome.driver", new File("chromedriver").getAbsolutePath());
         System.setProperty("webdriver.gecko.driver", new File("geckodriver").getAbsolutePath());
+
         if ("".equals(PropertyLoader.loadProperty("grid.url")))
         {
             gridHubUrl = null;
@@ -59,10 +63,23 @@ public class Initial
     }
 
     @BeforeEach
-    public void initWebDriver()
+    public void initWebDriver() throws IOException
     {
         driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
-        driver.manage().window().maximize();
+
+        // webdriver lost his .maximize() for Chrome
+        String browser = PropertyLoader.loadProperty("capabilities");
+        if (browser.contains("chrome"))
+        {
+            java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            driver.manage().window().setPosition(new Point(0, 0));
+            Dimension maximizedScreenSize =
+                    new Dimension((int) screenSize.getWidth(), (int) screenSize.getHeight());
+            driver.manage().window().setSize(maximizedScreenSize);
+        } else
+        {
+            driver.manage().window().maximize();
+        }
     }
 
     @AfterEach
