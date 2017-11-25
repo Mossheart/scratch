@@ -17,7 +17,7 @@ public class WorkingWithCartTests extends Base
     {
         homePage.gotoCartPage();
 
-        assertEquals(cartPage.getTotalPriceOfGoodsInCart(), 0.00);
+        assertEquals(0.00, cartPage.getTotalPriceOfGoodsInCart());
     }
 
     @Test

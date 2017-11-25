@@ -15,4 +15,6 @@ public class SerpElements
 {
     @FindBy(how = How.XPATH, using = ".//*[@class='lvtitle']/a")
     public List<WebElement> allSnippets;
+
+    public static final String ALL_SNIPPETS = ".//*[@class='lvtitle']/a";
 }

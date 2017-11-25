@@ -18,11 +18,11 @@ public class HomePage extends Base
 
     public void clickSigningMenu()
     {
-        homePageElements.signingMenu.click();
+        homeElements.signingMenu.click();
     }
 
     public void clickSignOut()
     {
-        homePageElements.signOut.click();
+        homeElements.signOut.click();
     }
 }

@@ -12,7 +12,7 @@ public class SerpPage extends Base
 {
     public boolean checkSnippetsForQueryMatches(String queryValue)
     {
-        for (WebElement snippet : serpPageElements.allSnippets) {
+        for (WebElement snippet : elements(serpElements.ALL_SNIPPETS)) {
             if ((snippet.getAttribute("title")).toLowerCase().contains(queryValue)) {
                 continue;
             } else {
@@ -27,7 +27,7 @@ public class SerpPage extends Base
     {
         List<String> snippetLinks = new ArrayList<String>();
 
-        for (WebElement snippet : serpPageElements.allSnippets) {
+        for (WebElement snippet : elements(serpElements.ALL_SNIPPETS)) {
             snippetLinks.add(snippet.getAttribute("href"));
         }
 

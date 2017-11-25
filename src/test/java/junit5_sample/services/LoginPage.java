@@ -8,12 +8,12 @@ public class LoginPage extends Base
 {
     public void loggingIn()
     {
-        loginPageElements.loginLink.click();
+        loginElements.loginLink.click();
 
-        loginPageElements.emailForm.sendKeys(LOGIN);
+        loginElements.emailForm.sendKeys(LOGIN);
 
-        loginPageElements.passwordForm.sendKeys(PASS);
+        loginElements.passwordForm.sendKeys(PASS);
 
-        loginPageElements.signButton.click();
+        loginElements.signButton.click();
     }
 }

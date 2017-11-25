@@ -43,8 +43,8 @@ public class Initial
     @BeforeAll
     public static void initTestSuite() throws IOException
     {
-        System.setProperty("webdriver.chrome.driver", new File("chromedriver").getAbsolutePath());
-        System.setProperty("webdriver.gecko.driver", new File("geckodriver").getAbsolutePath());
+        System.setProperty("webdriver.chrome.driver", new File("chromedriver.exe").getAbsolutePath());
+        System.setProperty("webdriver.gecko.driver", new File("geckodriver.exe").getAbsolutePath());
 
         if ("".equals(PropertyLoader.loadProperty("grid.url")))
         {

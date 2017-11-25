@@ -14,7 +14,7 @@ import java.util.List;
 public class CartElements
 {
     @FindBy(how = How.XPATH, using = ".//*[@id='syncTotal']/span[2]")
-    public WebElement totalPrice;
+    public WebElement totalPrice;// = driver.findElement(By.xpath(".//*[@id='syncTotal']/span[2]"));
 
     @FindBy(how = How.XPATH, using = ".//*[@class='fw-b']")
     public List<WebElement> subtotalItemPrices;

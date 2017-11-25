@@ -26,25 +26,25 @@ public class CartPage extends Base
 
     public double getTotalPriceOfGoodsInCart()
     {
-        return parseEbayPriceToDouble(cartPageElements.totalPrice.getText());
+        return parseEbayPriceToDouble(cartElements.totalPrice.getText());
     }
 
     public void saveForLater()
     {
-        cartPageElements.saveForLater.click();
+        cartElements.saveForLater.click();
     }
 
     public void returnFromLater()
     {
-        cartPageElements.returnFromLater.click();
+        cartElements.returnFromLater.click();
     }
 
     public boolean compareTotalToSumOfParticularPrices()
     {
-        double total = parseEbayPriceToDouble(cartPageElements.subtotalPrice.getText());
+        double total = parseEbayPriceToDouble(cartElements.subtotalPrice.getText());
 
         double sum = 0.0;
-        for (WebElement subprice : cartPageElements.subtotalItemPrices) {
+        for (WebElement subprice : cartElements.subtotalItemPrices) {
             double sub;
             try {
                 sub = parseEbayPriceToDouble(subprice.getText());
@@ -73,15 +73,15 @@ public class CartPage extends Base
      */
     public boolean changeQuantityAndRefresh(int quantity)
     {
-        double oneItemPrice = parseEbayPriceToDouble(cartPageElements.subtotalPrice.getText());
+        double oneItemPrice = parseEbayPriceToDouble(cartElements.subtotalPrice.getText());
 
-        cartPageElements.itemQuantity.clear();
-        cartPageElements.itemQuantity.sendKeys(Integer.toString(quantity));
-        cartPageElements.refreshQuantity.click();
+        cartElements.itemQuantity.clear();
+        cartElements.itemQuantity.sendKeys(Integer.toString(quantity));
+        cartElements.refreshQuantity.click();
 
         if (quantity == 0)
             ;
-        else if (parseEbayPriceToDouble(cartPageElements.subtotalPrice.getText()) == oneItemPrice * quantity)
+        else if (parseEbayPriceToDouble(cartElements.subtotalPrice.getText()) == oneItemPrice * quantity)
             return true;
         else
             return false;
