@@ -7,16 +7,16 @@ import org.openqa.selenium.support.How;
 
 public class SearchFormElements
 {
-    protected static WebDriver driver;
+    @FindBy(how = How.XPATH, using = ".//*[@id='gh-ac']")
+    public WebElement searchForm;
+
+    @FindBy(how = How.XPATH, using = ".//*[@id='gh-btn']")
+    public WebElement performSearch;
+
+    protected WebDriver driver;
 
     public SearchFormElements(WebDriver driver)
     {
         this.driver = driver;
     }
-
-    @FindBy(how = How.XPATH, using = ".//*[@id='gh-ac']")
-    public static WebElement searchForm;
-
-    @FindBy(how = How.XPATH, using = ".//*[@id='gh-btn']")
-    public static WebElement performSearch;
 }

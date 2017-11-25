@@ -40,7 +40,6 @@ public class SearchQueryTests extends Base
     }
 
     @Test
-    @Disabled
     public void usingMatcher_Success()
     {
         String queryValue = "samsung";

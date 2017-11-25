@@ -1,7 +1,9 @@
 package junit5_sample.services;
 
 import junit5_sample.Base;
+import junit5_sample.models.SerpElements;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,9 +12,15 @@ import java.util.List;
 @Service
 public class SerpPage extends Base
 {
+    private SerpElements serpElements;
+    public SerpPage()
+    {
+        serpElements = PageFactory.initElements(driver, SerpElements.class);
+    }
+
     public boolean checkSnippetsForQueryMatches(String queryValue)
     {
-        for (WebElement snippet : elements(serpElements.ALL_SNIPPETS)) {
+        for (WebElement snippet : serpElements.allSnippets) {
             if ((snippet.getAttribute("title")).toLowerCase().contains(queryValue)) {
                 continue;
             } else {
@@ -27,7 +35,7 @@ public class SerpPage extends Base
     {
         List<String> snippetLinks = new ArrayList<String>();
 
-        for (WebElement snippet : elements(serpElements.ALL_SNIPPETS)) {
+        for (WebElement snippet : serpElements.allSnippets) {
             snippetLinks.add(snippet.getAttribute("href"));
         }
 

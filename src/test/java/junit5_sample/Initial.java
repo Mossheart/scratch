@@ -60,12 +60,14 @@ public class Initial
 
         LOGIN = PropertyLoader.loadProperty("login");
         PASS = PropertyLoader.loadProperty("pass");
+
+        driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
     }
 
     @BeforeEach
     public void initWebDriver() throws IOException
     {
-        driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
+//        driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
 
         // webdriver lost his .maximize() for Chrome
         String browser = PropertyLoader.loadProperty("capabilities");
