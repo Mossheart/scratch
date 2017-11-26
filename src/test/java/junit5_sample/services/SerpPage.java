@@ -1,6 +1,6 @@
 package junit5_sample.services;
 
-import junit5_sample.Base;
+import junit5_sample.Initial;
 import junit5_sample.models.SerpElements;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SerpPage extends Base
+public class SerpPage extends Initial
 {
     private SerpElements serpElements;
     public SerpPage()

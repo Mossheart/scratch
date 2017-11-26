@@ -1,6 +1,6 @@
 package junit5_sample.services;
 
-import junit5_sample.Base;
+import junit5_sample.Initial;
 import junit5_sample.models.CartElements;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.text.DecimalFormat;
 
 @Service
-public class CartPage extends Base
+public class CartPage extends Initial
 {
     private CartElements cartElements;
     public CartPage()
