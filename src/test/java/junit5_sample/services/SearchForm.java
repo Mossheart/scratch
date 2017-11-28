@@ -1,22 +1,25 @@
 package junit5_sample.services;
 
-import static junit5_sample.models.SearchFormElements.*;
+import junit5_sample.Initial;
+import junit5_sample.models.SearchFormElements;
+import org.openqa.selenium.support.PageFactory;
+import org.springframework.stereotype.Service;
 
-public class SearchForm
+@Service
+public class SearchForm extends Initial
 {
-    public static void enterQueryAndClickSearch(String queryValue)
+    private SearchFormElements searchFormElements;
+    public SearchForm()
     {
-        /**
-         * clear the search form
-         */
-        searchForm.clear();
-        /**
-         * typing query
-         */
-        searchForm.sendKeys(queryValue);
-        /**
-         * search button clicking
-         */
-        performSearch.click();
+        searchFormElements = PageFactory.initElements(driver, SearchFormElements.class);
+    }
+
+    public void enterQueryAndClickSearch(String queryValue)
+    {
+        searchFormElements.searchForm.clear();
+
+        searchFormElements.searchForm.sendKeys(queryValue);
+
+        searchFormElements.performSearch.click();
     }
 }

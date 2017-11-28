@@ -1,28 +1,36 @@
 package junit5_sample.services;
 
-import static junit5_sample.models.HomeElements.*;
-import static junit5_sample.tests.Initial.baseUrl;
-import static junit5_sample.tests.Initial.cartUrl;
+import junit5_sample.Initial;
+import junit5_sample.models.HomeElements;
+import org.openqa.selenium.support.PageFactory;
+import org.springframework.stereotype.Service;
 
-public class HomePage
+@Service
+public class HomePage extends Initial
 {
-    public static void gotoHomePage()
+    private HomeElements homeElements;
+    public HomePage()
+    {
+        homeElements = PageFactory.initElements(driver, HomeElements.class);
+    }
+
+    public void gotoHomePage()
     {
         driver.get(baseUrl);
     }
 
-    public static void gotoCartPage()
+    public void gotoCartPage()
     {
         driver.get(cartUrl);
     }
 
-    public static void clickSigningMenu()
+    public void clickSigningMenu()
     {
-        signingMenu.click();
+        homeElements.signingMenu.click();
     }
 
-    public static void clickSignOut()
+    public void clickSignOut()
     {
-        signOut.click();
+        homeElements.signOut.click();
     }
 }

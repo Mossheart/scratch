@@ -13,7 +13,7 @@ import java.util.Properties;
 public class PropertyLoader
 {
 
-    private static final String DEBUG_PROPERTIES = "/debug.properties";
+    private static final String DEBUG_PROPERTIES = "debug.properties";
 
     public static Capabilities loadCapabilities() throws IOException
     {
